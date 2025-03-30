@@ -4,4 +4,3 @@ openpyxl
 plotly
 kaleido
 matplotlib
-tkinter
