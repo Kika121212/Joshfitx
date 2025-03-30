@@ -87,8 +87,8 @@ radio_day_odd.pack()
 radio_day_even.pack()
 
 root.mainloop()
-            else:
-                st.error("Invalid Username or Password")
+else:
+st.error("Invalid Username or Password")
 
 if __name__ == "__main__": 
     main()
