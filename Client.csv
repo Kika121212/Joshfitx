@@ -1,5 +1,6 @@
 Client No,Name,Password,Height,Weight,Age,Gender,BMR,Breakfast 1,Morning Snack 1,Lunch 1,Evening Snack 1,Dinner 1,Other
-1,Joshwa,JoshwaFitX001,167,63,25,Male,1554,,,,,,
+1,Joshwa,JoshwaFitX001,167,63,25,Male,1554,"8 Egg Whites, 2 Whole Eggs, 2 Toasted Bread",,,,,
+1,Joshwa,JoshwaFitX001,167,63,25,Male,1554,"8 Egg Whites, 2 Whole Eggs, 2 Toasted Bread",,,,,
 2,Sharyk Ahmed,Sharyk AhmedFitX001,175,85,28,Male,1809,,,,,,
 3,Aravinth KS,Aravinth KSFitX001,164,68,23,Male,1595,"8 Egg Whites, 2 Whole Eggs, 2 Toasted Bread",Sweet Potato (150 g),"100g Chicken, 2 Chapathi (50g each)","Greek Yogurt (40 RS), 9 Egg Whites","Banana (Medium), Oats (80 g), Low fat Milk (150 ml)",Coffee + Sugar (150-200ml)
 4,Udhayakumar,UdhayakumarFitX001,185,78,25,Male,1816,,,,,,
