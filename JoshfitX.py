@@ -5,7 +5,9 @@ import pandas as pd
 
 def load_data(): return pd.read_csv("Client.csv")
 
-def authenticate(client_data, username, password): client_row = client_data[(client_data['Name'] == username) & (client_data['Password'] == password)] return client_row if not client_row.empty else None
+def authenticate(client_data, username, password): 
+    client_row = client_data[(client_data['Name'] == username) & (client_data['Password'] == password)]
+    return client_row if not client_row.empty else None
 
 Streamlit App
 
