@@ -39,17 +39,13 @@ def main():
                 
                 with tabs[1]:
                     st.write("### Diet Chart")
-                    display_diet_chart()
-
+                    display_diet_chart(client_info)
             else:
                 st.error("Invalid Username or Password")
 
-def display_diet_chart():
+def display_diet_chart(client_info):
     # Radio buttons for Day-Odd and Day-Even
     day_type = st.radio("Select Day Type", ('Day-Odd', 'Day-Even'))
-
-    # Read the Client.csv file
-    df = pd.read_csv('Client.csv')
 
     # Determine the columns to display based on the selected day type
     if day_type == 'Day-Odd':
@@ -57,8 +53,11 @@ def display_diet_chart():
     else:
         columns_to_display = ['Breakfast 2', 'Morning Snack 2', 'Lunch 2', 'Evening Snack 2', 'Dinner 2']
 
+    # Filter the client's data
+    client_data = client_info[columns_to_display]
+
     # Display the table
-    st.write(df[columns_to_display])
+    st.write(client_data)
 
 if __name__ == "__main__":
     main()
