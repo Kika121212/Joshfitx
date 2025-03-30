@@ -29,13 +29,20 @@ def main():
             
             if client_info is not None:
                 st.success(f"Welcome, {client_info['Name'].values[0]}!")
-                st.write("### Your Profile")
-                st.write(f"*Client No:* {client_info['Client No'].values[0]}")
-                st.write(f"*Name:* {client_info['Name'].values[0]}")
-                st.write(f"*Height:* {client_info['Height'].values[0]} cm")
-                st.write(f"*Weight:* {client_info['Weight'].values[0]} kg")
-                st.write(f"*Age:* {client_info['Age'].values[0]}")
-                st.write(f"*BMR:* {client_info['BMR'].values[0]}")
+                
+                tabs = st.tabs(["Profile Details", "Diet Tracker"])
+                with tabs[0]:
+                    st.write("### Your Profile")
+                    st.write(f"*Client No:* {client_info['Client No'].values[0]}")
+                    st.write(f"*Name:* {client_info['Name'].values[0]}")
+                    st.write(f"*Height:* {client_info['Height'].values[0]} cm")
+                    st.write(f"*Weight:* {client_info['Weight'].values[0]} kg")
+                    st.write(f"*Age:* {client_info['Age'].values[0]}")
+                    st.write(f"*BMR:* {client_info['BMR'].values[0]}")
+                
+                with tabs[1]:
+                    st.write("### Diet Tracker")
+                    st.write("This section will be developed further.")
             else:
                 st.error("Invalid Username or Password")
 
