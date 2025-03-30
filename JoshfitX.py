@@ -35,6 +35,7 @@ def main():
                 st.write(f"*Height:* {client_info['Height'].values[0]} cm")
                 st.write(f"*Weight:* {client_info['Weight'].values[0]} kg")
                 st.write(f"*Age:* {client_info['Age'].values[0]}")
+                st.write(f"*BMR:* {client_info['BMR'].values[0]}")
             else:
                 st.error("Invalid Username or Password")
 
