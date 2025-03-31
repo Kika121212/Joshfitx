@@ -32,6 +32,21 @@ def main():
             else:
                 st.error("Invalid Username or Password")
 
+    elif choice == "BMR Calculator":
+        st.subheader("BMR Calculator")
+        height = st.number_input("Enter Your Height (cm)", min_value=0)
+        weight = st.number_input("Enter Your Weight (kg)", min_value=0)
+        age = st.number_input("Enter Your Age", min_value=0)
+        gender = st.selectbox("Select Your Gender", ["Male", "Female"])
+
+        if st.button("Calculate BMR"):
+            if gender == "Male":
+                bmr = 10 * weight + 6.25 * height + 5 * age + 5
+            else:
+                bmr = 10 * weight + 6.25 * height + 5 * age - 161
+
+            st.success(f"Your BMR is: {bmr}")
+
     if "logged_in" in st.session_state and st.session_state.logged_in:
         display_dashboard()
 
