@@ -12,7 +12,7 @@ def authenticate(client_data, username, password):
 def main():
     st.title("Joshfitx Fitness Centre")
 
-    menu = ["Login"]
+    menu = ["Login", "BMR Calculator"]
     choice = st.sidebar.selectbox("Menu", menu)
 
     if choice == "Login":
