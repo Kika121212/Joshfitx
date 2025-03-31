@@ -50,7 +50,7 @@ def display_diet_chart(client_info):
     # Determine the columns to display based on the selected day type
     if day_type == 'Day-Odd':
         columns_to_display = ['Breakfast 1', 'Morning Snack 1', 'Lunch 1', 'Evening Snack 1', 'Dinner 1']
-    else:
+    elif day_type == 'Day-Even':
         columns_to_display = ['Breakfast 2', 'Morning Snack 2', 'Lunch 2', 'Evening Snack 2', 'Dinner 2']
 
     # Filter the client's data
