@@ -17,31 +17,40 @@ def main():
 
     if choice == "Login":
         st.subheader("Client Login")
-        username = st.text_input("Enter Your Name")
-        password = st.text_input("Enter Your Password", type="password")
+        username = st.text_input("Enter Your Name", key="username")
+        password = st.text_input("Enter Your Password", type="password", key="password")
         
         if st.button("Login"):
             client_data = load_data()
             client_info = authenticate(client_data, username, password)
             
             if client_info is not None:
+                st.session_state.logged_in = True
+                st.session_state.client_info = client_info
                 st.success(f"Welcome, {client_info['Name'].values[0]}!")
-                
-                tabs = st.tabs(["Profile Details", "Diet Chart"])
-                with tabs[0]:
-                    st.write("### Your Profile")
-                    st.write(f"*Client No:* {client_info['Client No'].values[0]}")
-                    st.write(f"*Name:* {client_info['Name'].values[0]}")
-                    st.write(f"*Height:* {client_info['Height'].values[0]} cm")
-                    st.write(f"*Weight:* {client_info['Weight'].values[0]} kg")
-                    st.write(f"*Age:* {client_info['Age'].values[0]}")
-                    st.write(f"*BMR:* {client_info['BMR'].values[0]}")
-                
-                with tabs[1]:
-                    st.write("### Diet Chart")
-                    display_diet_chart(client_info)
+                display_dashboard()
             else:
                 st.error("Invalid Username or Password")
+
+    if "logged_in" in st.session_state and st.session_state.logged_in:
+        display_dashboard()
+
+def display_dashboard():
+    client_info = st.session_state.client_info
+
+    tabs = st.tabs(["Profile Details", "Diet Chart"])
+    with tabs[0]:
+        st.write("### Your Profile")
+        st.write(f"*Client No:* {client_info['Client No'].values[0]}")
+        st.write(f"*Name:* {client_info['Name'].values[0]}")
+        st.write(f"*Height:* {client_info['Height'].values[0]} cm")
+        st.write(f"*Weight:* {client_info['Weight'].values[0]} kg")
+        st.write(f"*Age:* {client_info['Age'].values[0]}")
+        st.write(f"*BMR:* {client_info['BMR'].values[0]}")
+    
+    with tabs[1]:
+        st.write("### Diet Chart")
+        display_diet_chart(client_info)
 
 def display_diet_chart(client_info):
     # Radio buttons for Day-Odd and Day-Even
