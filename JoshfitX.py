@@ -59,4 +59,6 @@ def display_diet_chart(client_info):
     # Display the table
     st.write(client_data)
 
+if __name__ == "__main__":
+    main()
 
