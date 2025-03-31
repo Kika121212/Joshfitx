@@ -41,9 +41,9 @@ def main():
 
         if st.button("Calculate BMR"):
             if gender == "Male":
-                bmr = (10 * weight) + (6.25 * height) + (5 * age) + 5
+                bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5
             else:
-                bmr = (10 * weight) + (6.25 * height) + (5 * age) - 161
+                bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161
 
             st.success(f"Your BMR is: {bmr}")
 
