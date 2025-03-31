@@ -61,4 +61,3 @@ def display_diet_chart(client_info):
 
 if __name__ == "__main__":
     main()
-
