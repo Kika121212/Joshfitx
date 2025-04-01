@@ -69,7 +69,7 @@ def display_dashboard():
 
 def display_diet_chart(client_info):
     # Dropdown select box for Day-Odd and Day-Even with a unique key
-    day_type = st.selectbox("Select Day Type", ('Day-Odd', 'Day-Even'), key="day_type_select")
+    day_type = st.selectbox("Select Day Type", ('Day-Odd', 'Day-Even'))
 
     # Determine the columns to display based on the selected day type
     if day_type == 'Day-Odd':
