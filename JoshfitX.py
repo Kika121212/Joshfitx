@@ -69,7 +69,7 @@ def display_dashboard():
 
 def display_diet_chart(client_info):
     # Radio buttons for Day-Odd and Day-Even
-    day_type = st.radio("Select Day Type", ('Day-Odd', 'Day-Even'))
+    day_type = st.radio("Select Day Type", ('Day-Odd', 'Day-Even'), key="unique_radio_key")
 
     # Determine the columns to display based on the selected day type
     if day_type == 'Day-Odd':
