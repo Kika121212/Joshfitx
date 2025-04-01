@@ -56,7 +56,7 @@ def display_dashboard():
     tabs = st.tabs(["Profile Details", "Diet Chart"])
     with tabs[0]:
         st.write("### Your Profile")
-        st.write(f"*Client No:* {client_info['Client No'].values[0]}")
+        st.write(f"*User ID:* {client_info['Client No'].values[0]}")
         st.write(f"*Name:* {client_info['Name'].values[0]}")
         st.write(f"*Height:* {client_info['Height'].values[0]} cm")
         st.write(f"*Weight:* {client_info['Weight'].values[0]} kg")
