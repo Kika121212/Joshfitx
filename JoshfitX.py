@@ -13,14 +13,14 @@ def main():
     st.title("Joshfitx Fitness Centre")
 
     menu = ["Login", "BMR Calculator"]
-    choice = st.sidebar.selectbox("Menu", menu)
+    choice = st.sidebar.selectbox("Menu", menu, key="menu")
 
     if choice == "Login":
         st.subheader("Client Login")
         username = st.text_input("Enter Your Name", key="username")
         password = st.text_input("Enter Your Password", type="password", key="password")
         
-        if st.button("Login"):
+        if st.button("Login", key="login_button"):
             client_data = load_data()
             client_info = authenticate(client_data, username, password)
             
@@ -34,12 +34,12 @@ def main():
 
     elif choice == "BMR Calculator":
         st.subheader("BMR Calculator")
-        height = st.number_input("Enter Your Height (cm)", min_value=0)
-        weight = st.number_input("Enter Your Weight (kg)", min_value=0)
-        age = st.number_input("Enter Your Age", min_value=0)
-        gender = st.selectbox("Select Your Gender", ["Male", "Female"])
+        height = st.number_input("Enter Your Height (cm)", min_value=0, key="height")
+        weight = st.number_input("Enter Your Weight (kg)", min_value=0, key="weight")
+        age = st.number_input("Enter Your Age", min_value=0, key="age")
+        gender = st.selectbox("Select Your Gender", ["Male", "Female"], key="gender")
 
-        if st.button("Calculate BMR"):
+        if st.button("Calculate BMR", key="calculate_bmr"):
             if gender == "Male":
                 bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5
             else:
@@ -69,7 +69,7 @@ def display_dashboard():
 
 def display_diet_chart(client_info):
     # Radio buttons for Day-Odd and Day-Even
-    day_type = st.radio("Select Day Type", ('Day-Odd', 'Day-Even'), key="unique_radio_key")
+    day_type = st.radio("Select Day Type", ('Day-Odd', 'Day-Even'), key="day_type_radio")
 
     # Determine the columns to display based on the selected day type
     if day_type == 'Day-Odd':
