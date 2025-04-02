@@ -5,6 +5,10 @@ import pandas as pd
 def load_data():
     return pd.read_csv("Client.csv")
 
+# Load food data from CSV
+def load_food_data():
+    return pd.read_csv("food.csv")
+
 def authenticate(client_data, username, password):
     client_row = client_data[(client_data['Name'] == username) & (client_data['Password'] == password)]
     return client_row if not client_row.empty else None
@@ -53,7 +57,7 @@ def main():
 def display_dashboard():
     client_info = st.session_state.client_info
 
-    tabs = st.tabs(["Profile Details", "Diet Chart"])
+    tabs = st.tabs(["Profile Details", "Diet Chart", "Diet Checker"])
     with tabs[0]:
         st.write("### Your Profile")
         st.write(f"*User ID:* {client_info['Client No'].values[0]}")
@@ -66,6 +70,10 @@ def display_dashboard():
     with tabs[1]:
         st.write("### Diet Chart")
         display_diet_chart(client_info)
+
+    with tabs[2]:
+        st.write("### Diet Checker")
+        display_diet_checker()
 
 def display_diet_chart(client_info):
     # Dropdown select box for Day-Odd and Day-Even with a unique key
@@ -82,6 +90,29 @@ def display_diet_chart(client_info):
 
     # Display the table
     st.write(client_data)
+
+def display_diet_checker():
+    food_data = load_food_data()
+    food_items = food_data['Food'].tolist()
+
+    total_calories = 0
+    num_rows = st.session_state.get('num_rows', 4)
+
+    for row in range(num_rows):
+        cols = st.columns(3)
+        food_item = cols[0].selectbox(f"Food Item {row+1}", food_items, key=f"food_{row}")
+        quantity = cols[1].number_input(f"Quantity {row+1}", min_value=0, key=f"quantity_{row}")
+        if food_item:
+            calories_per_g = food_data[food_data['Food'] == food_item]['Calories (kcal/g)'].values[0]
+            calories = calories_per_g * quantity
+            cols[2].write(f"Total Calories: {calories}")
+            total_calories += calories
+
+    st.write(f"**Total Calories Consumed:** {total_calories}")
+
+    if st.button("Add Row"):
+        st.session_state.num_rows = num_rows + 1
+        st.experimental_rerun()
 
 if __name__ == "__main__":
     main()
