@@ -95,11 +95,13 @@ def display_diet_checker():
     food_data = load_food_data()
     food_items = food_data['Food'].tolist()
 
-    total_calories = 0
-    num_rows = st.session_state.get('num_rows', 4)
+    if 'diet_rows' not in st.session_state:
+        st.session_state.diet_rows = [0, 1, 2, 3]
 
-    for row in range(num_rows):
-        cols = st.columns(3)
+    total_calories = 0
+
+    for row in st.session_state.diet_rows:
+        cols = st.columns(4)
         food_item = cols[0].selectbox(f"Food Item {row+1}", food_items, key=f"food_{row}")
         quantity = cols[1].number_input(f"Quantity {row+1}", min_value=0, key=f"quantity_{row}")
         if food_item:
@@ -107,11 +109,14 @@ def display_diet_checker():
             calories = calories_per_g * quantity
             cols[2].write(f"Total Calories: {calories}")
             total_calories += calories
+        if cols[3].button("Delete Row", key=f"delete_{row}"):
+            st.session_state.diet_rows.remove(row)
+            st.experimental_rerun()
 
     st.write(f"**Total Calories Consumed:** {total_calories}")
 
     if st.button("Add Row"):
-        st.session_state.num_rows = num_rows + 1
+        st.session_state.diet_rows.append(max(st.session_state.diet_rows) + 1)
         st.experimental_rerun()
 
 if __name__ == "__main__":
