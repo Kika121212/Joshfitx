@@ -111,13 +111,13 @@ def display_diet_checker():
             total_calories += calories
         if cols[3].button("Delete Row", key=f"delete_{row}"):
             st.session_state.diet_rows.remove(row)
-            st.experimental_rerun()
+            st.experimental_set_query_params(**st.experimental_get_query_params())  # Trigger rerun
 
     st.write(f"**Total Calories Consumed:** {total_calories}")
 
     if st.button("Add Row"):
         st.session_state.diet_rows.append(max(st.session_state.diet_rows) + 1)
-        st.experimental_rerun()
+        st.experimental_set_query_params(**st.experimental_get_query_params())  # Trigger rerun
 
 if __name__ == "__main__":
     main()
