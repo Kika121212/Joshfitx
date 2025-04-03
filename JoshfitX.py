@@ -77,7 +77,7 @@ def display_dashboard():
 
 def display_diet_chart(client_info):
     # Dropdown select box for Day-Odd and Day-Even with a unique key
-    day_type = st.selectbox("Select Day Type", ('Day-Odd', 'Day-Even'))
+    day_type = st.selectbox("Select Day Type", ('Day-Odd', 'Day-Even'), key="day_type")
 
     # Determine the columns to display based on the selected day type
     if day_type == 'Day-Odd':
@@ -102,22 +102,22 @@ def display_diet_checker():
 
     for row in st.session_state.diet_rows:
         cols = st.columns(4)
-        food_item = cols[0].selectbox(f"Food Item {row+1}", food_items, key=f"food_{row}")
-        quantity = cols[1].number_input(f"Quantity {row+1}", min_value=0, key=f"quantity_{row}")
+        food_item = cols[0].selectbox(f"Food Item {row+1}", food_items, key=f"food_{row}_selectbox")
+        quantity = cols[1].number_input(f"Quantity {row+1}", min_value=0, key=f"quantity_{row}_numberinput")
         if food_item:
             calories_per_g = food_data[food_data['Food'] == food_item]['Calories (kcal/g)'].values[0]
             calories = calories_per_g * quantity
             cols[2].write(f"Total Calories: {calories}")
             total_calories += calories
-        if cols[3].button("Delete Row", key=f"delete_{row}"):
+        if cols[3].button("Delete Row", key=f"delete_{row}_button"):
             st.session_state.diet_rows.remove(row)
-            st.experimental_set_query_params(**st.query_params)  # Trigger rerun
+            st.experimental_rerun()  # Trigger rerun
 
     st.write(f"**Total Calories Consumed:** {total_calories}")
 
     if st.button("Add Row"):
         st.session_state.diet_rows.append(max(st.session_state.diet_rows) + 1)
-        st.experimental_set_query_params(**st.query_params)  # Trigger rerun
+        st.experimental_rerun()  # Trigger rerun
 
 if __name__ == "__main__":
     main()
