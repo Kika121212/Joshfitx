@@ -96,7 +96,7 @@ def display_diet_checker():
     food_items = food_data['Food'].tolist()
 
     if 'diet_rows' not in st.session_state:
-        st.session_state.diet_rows = [0, 1, 2, 3]
+        st.session_state.diet_rows = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
     total_calories = 0
 
