@@ -76,20 +76,26 @@ def display_dashboard():
         display_diet_checker()
 
 def display_diet_chart(client_info):
-    # Dropdown select box for Day-Odd and Day-Even with a unique key
-    day_type = st.selectbox("Select Day Type", ('Day-Odd', 'Day-Even'), key="day_type")
-
-    # Determine the columns to display based on the selected day type
-    if day_type == 'Day-Odd':
-        columns_to_display = ['Breakfast 1', 'Morning Snack 1', 'Lunch 1', 'Evening Snack 1', 'Dinner 1', 'Other 1']
-    elif day_type == 'Day-Even':
-        columns_to_display = ['Breakfast 2', 'Morning Snack 2', 'Lunch 2', 'Evening Snack 2', 'Dinner 2', 'Other 2']
-
-    # Filter the client's data
-    client_data = client_info[columns_to_display]
-
-    # Display the table
-    st.write(client_data)
+    # Determine the columns to display for Day-Odd
+    columns_day_odd = ['Breakfast 1', 'Morning Snack 1', 'Lunch 1', 'Evening Snack 1', 'Dinner 1', 'Other 1']
+    
+    # Determine the columns to display for Day-Even
+    columns_day_even = ['Breakfast 2', 'Morning Snack 2', 'Lunch 2', 'Evening Snack 2', 'Dinner 2', 'Other 2']
+    
+    # Filter the client's data for both day types
+    client_data_day_odd = client_info[columns_day_odd]
+    client_data_day_even = client_info[columns_day_even]
+    
+    # Display the cards side by side
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.write("### Day-Odd Diet")
+        st.write(client_data_day_odd)
+    
+    with col2:
+        st.write("### Day-Even Diet")
+        st.write(client_data_day_even)
 
 def display_diet_checker():
     food_data = load_food_data()
