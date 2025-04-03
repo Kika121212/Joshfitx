@@ -86,16 +86,7 @@ def display_diet_chart(client_info):
     client_data_day_odd = client_info[columns_day_odd]
     client_data_day_even = client_info[columns_day_even]
     
-    # Display the cards side by side
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        st.write("### Day-Odd Diet")
-        st.write(client_data_day_odd)
-    
-    with col2:
-        st.write("### Day-Even Diet")
-        st.write(client_data_day_even)
+
 
 def display_diet_checker():
     food_data = load_food_data()
