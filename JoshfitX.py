@@ -16,8 +16,19 @@ def authenticate(client_data, username, password):
 def main():
     st.title("Joshfitx Fitness Centre")
 
+    # Menu options
     menu = ["Login", "BMR Calculator"]
-    choice = st.sidebar.selectbox("Menu", menu, key="menu")
+
+    # Create buttons for each menu option
+    for option in menu:
+        if st.button(option):
+            st.session_state.menu_choice = option
+
+    # Default to the first menu option if no button has been clicked yet
+    if "menu_choice" not in st.session_state:
+        st.session_state.menu_choice = menu[0]
+
+    choice = st.session_state.menu_choice
 
     if choice == "Login":
         st.subheader("Client Login")
@@ -53,7 +64,7 @@ def main():
 
     if "logged_in" in st.session_state and st.session_state.logged_in:
         display_dashboard()
-
+        
 def display_dashboard():
     client_info = st.session_state.client_info
 
