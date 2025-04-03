@@ -19,9 +19,10 @@ def main():
     # Menu options
     menu = ["Login", "BMR Calculator"]
 
-    # Create buttons for each menu option
+    # Create a sidebar with buttons for each menu option
+    st.sidebar.title("Menu")
     for option in menu:
-        if st.button(option):
+        if st.sidebar.button(option):
             st.session_state.menu_choice = option
 
     # Default to the first menu option if no button has been clicked yet
