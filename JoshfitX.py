@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-
+st.set_page_config(page_title="JoshFitX", layout="wide")
 # Load client data from CSV
 def load_data():
     return pd.read_csv("Client.csv")
