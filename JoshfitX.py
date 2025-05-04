@@ -129,6 +129,14 @@ def display_diet_checker():
 
     st.write(f"**Total Calories Consumed:** {total_calories}")
 
+    # Retrieve BMR from the logged-in client info
+    client_info = st.session_state.client_info
+    bmr = client_info['BMR'].values[0]
+
+    # Calculate remaining diet
+    remaining_diet = bmr - total_calories
+    st.write(f"**Remaining Diet (Calories):** {remaining_diet}")
+
     if st.button("Add Row"):
         st.session_state.diet_rows.append(max(st.session_state.diet_rows) + 1)
         st.experimental_rerun()  # Trigger rerun
