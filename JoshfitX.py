@@ -17,7 +17,7 @@ def main():
     st.title("Joshfitx Fitness Centre")
 
     # Menu options
-    menu = ["Login", "BMR Calculator"]
+    menu = ["Login Page", "BMR Calculator"]
 
     # Create a sidebar with buttons for each menu option
     st.sidebar.title("Menu")
@@ -31,7 +31,7 @@ def main():
 
     choice = st.session_state.menu_choice
 
-    if choice == "Login":
+    if choice == "Login Page":
         st.subheader("Client Login")
         username = st.text_input("Enter Your Name", key="username")
         password = st.text_input("Enter Your Password", type="password", key="password")
